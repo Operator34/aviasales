@@ -1,0 +1,21 @@
+.filter {
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    border-radius: 5px;
+    color: #4A4A4A;
+    background-color: #FFF;
+    margin: 20px 0;
+    height: fit-content;
+    min-width: 150px;
+    .form{
+        font-size: 13px;
+        text-align: start;
+        margin: 20px;
+
+        .title{
+            text-transform: uppercase;
+            font-size: 12px;
+            margin-bottom: 20px;
+        }
+
+    }
+}
