@@ -2,6 +2,8 @@ const CHANGE_FILTER = 'CHANGE_FILTER';
 const SORT_LOW_PRICE = 'SORT_LOW_PRICE';
 const SORT_HIGHT_SPEED = 'SORT_HIGHT_SPEED';
 const SORT_OPTIMAL = 'SORT_OPTIMAL';
+const ADD_SEARCH_ID = 'ADD_SEARCH_ID';
+const ADD_TICKETS = 'ADD_TICKETS';
 
 function reducer(state, action) {
   console.log('reducer state', state, action);
@@ -39,6 +41,12 @@ function reducer(state, action) {
       return { ...state, sorted: 'hightSpeed' };
     case SORT_OPTIMAL:
       return { ...state, sorted: 'optimal' };
+    case ADD_SEARCH_ID:
+      console.log('action searchid', action);
+      return { ...state, searchId: action.payload.searchId };
+    case ADD_TICKETS:
+      console.log('action addTickets', action);
+      return { ...state, tickets: action.payload.tickets };
     default:
       return state;
   }
