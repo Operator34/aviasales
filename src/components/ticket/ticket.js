@@ -26,7 +26,7 @@ const Ticket = ({ ticket }) => {
       <div className={cl.ticket}>
         <div className={cl.ticket__header}>
           <p className={cl.ticket__price}>{`${transformPrice(ticket.price)} Р`}</p>
-          <img className={cl.ticket__logo} src={Logo} />
+          <img className={cl.ticket__logo} alt="Logo" src={`//pics.avs.io/99/36/${ticket.carrier}.png`} />
         </div>
         {ticket.segments.map((segment, index) => (
           <div key={index} className={cl.ticket__rows}>

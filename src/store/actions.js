@@ -15,7 +15,9 @@ export const onSortHightSpeed = () => {
 export const onSortOptimal = () => {
   return { type: 'SORT_OPTIMAL' };
 };
-
+export const setIsLoading = () => {
+  return { type: 'SET_IS_LOADING' };
+};
 // export const getSearchIdAction = () => {
 //   return (dispatch) => {
 //     getSearchId().then((res) => {
@@ -25,14 +27,39 @@ export const onSortOptimal = () => {
 //   };
 // };
 
+// export const getTicketsAction = () => {
+//   return (dispatch) => {
+//     getSearchId().then((id) => {
+//       console.log(id.searchId);
+//       let stop = false;
+//       do {
+//         getTickets(id.searchId).then((res) => {
+//           console.log(res);
+//           stop = res.stop;
+//           dispatch({ type: 'ADD_TICKETS', payload: res });
+//         });
+//       } while (stop === true);
+//     });
+//   };
+// };
 export const getTicketsAction = () => {
   return (dispatch) => {
-    getSearchId().then((id) => {
+    getSearchId().then(async (id) => {
       console.log(id.searchId);
-      getTickets(id.searchId).then((res) => {
+      let stop = false;
+
+      do {
+        const res = await getTickets(id.searchId);
         console.log(res);
-        dispatch({ type: 'ADD_TICKETS', payload: res });
-      });
+
+        if (res) {
+          dispatch({ type: 'ADD_TICKETS', payload: res.tickets });
+          stop = res.stop;
+          if (stop) {
+            dispatch(setIsLoading());
+          }
+        }
+      } while (!stop);
     });
   };
 };

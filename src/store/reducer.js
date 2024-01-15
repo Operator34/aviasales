@@ -4,6 +4,7 @@ const SORT_HIGHT_SPEED = 'SORT_HIGHT_SPEED';
 const SORT_OPTIMAL = 'SORT_OPTIMAL';
 const ADD_SEARCH_ID = 'ADD_SEARCH_ID';
 const ADD_TICKETS = 'ADD_TICKETS';
+const SET_IS_LOADING = 'SET_IS_LOADING';
 
 function reducer(state, action) {
   console.log('reducer state', state, action);
@@ -44,9 +45,15 @@ function reducer(state, action) {
     case ADD_SEARCH_ID:
       console.log('action searchid', action);
       return { ...state, searchId: action.payload.searchId };
+    // case ADD_TICKETS:
+    //   console.log('action addTickets', action);
+    //   return { ...state, tickets: action.payload.tickets };
     case ADD_TICKETS:
-      console.log('action addTickets', action);
-      return { ...state, tickets: action.payload.tickets };
+      //console.log('action addTickets', action);
+      return { ...state, tickets: [...state.tickets, ...action.payload] };
+    case SET_IS_LOADING:
+      console.log('isLoading');
+      return { ...state, isLoading: !state.isLoading };
     default:
       return state;
   }

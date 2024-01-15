@@ -36,7 +36,7 @@ const Filter = ({ filter, changeFilter }) => {
 };
 
 const mapStateToProps = (state) => {
-  console.log(state);
+  //console.log(state);
   return {
     filter: state.filter,
   };

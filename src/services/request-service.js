@@ -9,7 +9,7 @@ async function getSearchId() {
       throw new Error('Failed to fetch search ID');
     }
     const body = await res.json();
-    console.log(body);
+    //console.log(body);
     return body;
   } catch (error) {
     console.error('Error getSearchId:', error);

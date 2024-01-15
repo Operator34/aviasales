@@ -13,7 +13,7 @@ const initialState = {
   },
   sorted: 'lowPrice',
   searchId: '1',
-  isLoading: false,
+  isLoading: true,
   tickets: [],
 };
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
