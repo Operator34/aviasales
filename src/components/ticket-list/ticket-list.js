@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import { connect } from 'react-redux';
 
@@ -7,13 +7,19 @@ import Ticket from '../ticket/ticket';
 import cl from './ticket-list.module.scss';
 
 const TicketList = ({ tickets, isLoading }) => {
+  const [count, setCount] = useState(4);
+
+  const updateCount = (num) => {
+    setCount((prev) => prev + num);
+  };
+
   const allCountTickets = tickets.length;
   console.log(allCountTickets);
   const allTickets = 7229;
   const countProgress = Math.floor((allCountTickets / allTickets) * 100);
   console.log(countProgress);
   const newTickets = tickets.filter((el, index) => {
-    return index <= 5;
+    return index <= count;
   });
   //console.log('TTicketList state', newTickets);
   return (
@@ -24,7 +30,7 @@ const TicketList = ({ tickets, isLoading }) => {
         <Ticket key={index} ticket={ticket} />
       ))}
 
-      <Button className={cl.ticketList_btn} variant="primary">
+      <Button className={cl.ticketList_btn} onClick={() => updateCount(5)} variant="primary">
         Показать еще 5 билетов
       </Button>
     </div>
@@ -39,15 +45,15 @@ const mapStateToProps = (state) => {
   };
 };
 
-const Spinner = () => {
-  return (
-    <div className="d-flex justify-content-center mb-4">
-      <div className="spinner-border text-primary" role="status">
-        <span className="visually-hidden">Загрузка...</span>
-      </div>
-    </div>
-  );
-};
+// const Spinner = () => {
+//   return (
+//     <div className="d-flex justify-content-center mb-4">
+//       <div className="spinner-border text-primary" role="status">
+//         <span className="visually-hidden">Загрузка...</span>
+//       </div>
+//     </div>
+//   );
+// };
 
 const ProgressBar = ({ countProgress }) => {
   return (

@@ -2,7 +2,7 @@ const CHANGE_FILTER = 'CHANGE_FILTER';
 const SORT_LOW_PRICE = 'SORT_LOW_PRICE';
 const SORT_HIGHT_SPEED = 'SORT_HIGHT_SPEED';
 const SORT_OPTIMAL = 'SORT_OPTIMAL';
-const ADD_SEARCH_ID = 'ADD_SEARCH_ID';
+// const ADD_SEARCH_ID = 'ADD_SEARCH_ID';
 const ADD_TICKETS = 'ADD_TICKETS';
 const SET_IS_LOADING = 'SET_IS_LOADING';
 
@@ -36,20 +36,33 @@ function reducer(state, action) {
       }
       return { ...state, filter: newStateFilter };
     }
-    case SORT_LOW_PRICE:
-      return { ...state, sorted: 'lowPrice' };
-    case SORT_HIGHT_SPEED:
-      return { ...state, sorted: 'hightSpeed' };
-    case SORT_OPTIMAL:
-      return { ...state, sorted: 'optimal' };
-    case ADD_SEARCH_ID:
-      console.log('action searchid', action);
-      return { ...state, searchId: action.payload.searchId };
+    case SORT_LOW_PRICE: {
+      const sortTickets = JSON.parse(JSON.stringify(state.tickets));
+      sortTickets.sort((a, b) => a.price - b.price);
+      return { ...state, sorted: 'lowPrice', tickets: sortTickets };
+    }
+    case SORT_HIGHT_SPEED: {
+      const sortTickets = JSON.parse(JSON.stringify(state.tickets));
+      sortTickets.sort((a, b) => {
+        const durationA = a.segments.reduce((a, c) => a + c.duration, 0);
+        const durationB = b.segments.reduce((a, c) => a + c.duration, 0);
+        return durationA - durationB;
+      });
+      return { ...state, sorted: 'hightSpeed', tickets: sortTickets };
+    }
+    case SORT_OPTIMAL: {
+      const sortTickets = JSON.parse(JSON.stringify(state.tickets));
+      sortTickets.sort((a, b) => a.price - b.price);
+      return { ...state, sorted: 'optimal', tickets: sortTickets };
+    }
+
+    // case ADD_SEARCH_ID:
+    //   console.log('action searchid', action);
+    //   return { ...state, searchId: action.payload.searchId };
     // case ADD_TICKETS:
     //   console.log('action addTickets', action);
     //   return { ...state, tickets: action.payload.tickets };
     case ADD_TICKETS:
-      //console.log('action addTickets', action);
       return { ...state, tickets: [...state.tickets, ...action.payload] };
     case SET_IS_LOADING:
       console.log('isLoading');
