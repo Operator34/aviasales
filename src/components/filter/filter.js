@@ -17,14 +17,13 @@ const Filter = ({ filter, changeFilter }) => {
           { label: '1 пересадка', id: 'oneTransfer', checked: filter.oneTransfer },
           { label: '2 пересадки', id: 'twoTransfer', checked: filter.twoTransfer },
           { label: '3 пересадки', id: 'threeTransfer', checked: filter.threeTransfer },
-        ].map((type, index) => (
-          <div key={index} className="mb-2">
+        ].map((type) => (
+          <div key={type.id} className="mb-2">
             <Form.Check
               id={type.id}
               label={`${type.label}`}
               checked={type.checked}
               onChange={() => {
-                console.log('change id', type.id);
                 changeFilter(type.id);
               }}
             />
@@ -36,7 +35,6 @@ const Filter = ({ filter, changeFilter }) => {
 };
 
 const mapStateToProps = (state) => {
-  //console.log(state);
   return {
     filter: state.filter,
   };

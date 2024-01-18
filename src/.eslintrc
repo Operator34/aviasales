@@ -21,7 +21,7 @@
     "plugins": ["react", "prettier", "import"],
     "rules": {
       "no-unused-vars": ["warn", { "vars": "all", "args": "after-used"}],
-      "indent": ["error", 2, {"SwitchCase" : 1, "ObjectExpression": 1}],
+      "indent": ["warn", 2, {"SwitchCase" : 1, "ObjectExpression": 1}],
       "prettier/prettier": "error",
       "linebreak-style": [0, "unix"],
       "quotes": ["error", "single"],

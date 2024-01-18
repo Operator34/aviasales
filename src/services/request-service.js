@@ -1,7 +1,6 @@
 const apiBase = 'https://aviasales-test-api.kata.academy';
 
 async function getSearchId() {
-  console.log('f getSearchID');
   try {
     const res = await fetch(`${apiBase}/search`);
 
@@ -9,7 +8,6 @@ async function getSearchId() {
       throw new Error('Failed to fetch search ID');
     }
     const body = await res.json();
-    //console.log(body);
     return body;
   } catch (error) {
     console.error('Error getSearchId:', error);
@@ -17,7 +15,6 @@ async function getSearchId() {
 }
 
 async function getTickets(searchID) {
-  console.log('f getTicket');
   try {
     const res = await fetch(`${apiBase}/tickets?searchId=${searchID}`);
     if (!res.ok) {

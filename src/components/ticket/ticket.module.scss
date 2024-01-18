@@ -7,11 +7,15 @@ $font-color-price: #2196F3;
     flex-direction: column;
     background-color: #fff;
     width: 502px;
-
     border-radius: 5px;
     padding: 15px 20px;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     margin-bottom: 20px;
+    @media screen and (max-width: 768px) {
+        // min-width: 255px;
+        width: auto;
+        padding: 0.55rem
+    }
     .ticket__header{
         display: flex;
         justify-content: space-between;
@@ -47,8 +51,14 @@ $font-color-price: #2196F3;
             color: $font-color-title;
             font-weight:600;
             margin-bottom: 0;
+            @media screen and (max-width: 768px) {
+                font-size: 10px;
+            }
         }
         .ticket__description{
+            @media screen and (max-width: 768px) {
+                font-size: 12px;
+            }
             font-size: 14px;
             color: $font-color-description;
             font-weight:600;

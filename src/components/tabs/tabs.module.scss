@@ -1,6 +1,7 @@
 $mainColor: #2196F3;
 .tabs {
     margin-bottom: 20px;
+
     .btnGroup{
     width: 100%;
         .btn{
@@ -10,6 +11,10 @@ $mainColor: #2196F3;
             color: #4A4A4A;
             text-transform: uppercase;
             font-weight: 600;
+            @media screen and (max-width: 768px) {
+                font-size: 11px;
+                padding: 0.55rem;
+            }
         }
         .active {
             border-color: #2196F3;

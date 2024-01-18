@@ -7,7 +7,6 @@ const ADD_TICKETS = 'ADD_TICKETS';
 const SET_IS_LOADING = 'SET_IS_LOADING';
 
 function reducer(state, action) {
-  console.log('reducer state', state, action);
   switch (action.type) {
     case CHANGE_FILTER: {
       let newStateFilter = JSON.parse(JSON.stringify(state.filter));
@@ -18,7 +17,6 @@ function reducer(state, action) {
         return count;
       }, 0);
       const falseField = Object.entries(newStateFilter).find(([key, value]) => value === false && key !== 'all');
-      console.log(trueCount, falseField);
       if (action.payload.field === 'all' && !state.filter.all) {
         for (let key in newStateFilter) {
           newStateFilter[key] = true;
@@ -56,16 +54,9 @@ function reducer(state, action) {
       return { ...state, sorted: 'optimal', tickets: sortTickets };
     }
 
-    // case ADD_SEARCH_ID:
-    //   console.log('action searchid', action);
-    //   return { ...state, searchId: action.payload.searchId };
-    // case ADD_TICKETS:
-    //   console.log('action addTickets', action);
-    //   return { ...state, tickets: action.payload.tickets };
     case ADD_TICKETS:
       return { ...state, tickets: [...state.tickets, ...action.payload] };
     case SET_IS_LOADING:
-      console.log('isLoading');
       return { ...state, isLoading: !state.isLoading };
     default:
       return state;

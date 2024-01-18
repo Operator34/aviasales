@@ -1,5 +1,9 @@
 .MainApp {
     display: flex;
-    border: 2px solid red;
     justify-content:center;
+    @media screen and (max-width: 768px) {
+        flex-direction: column;
+        min-width: 290px;
+    }
 }
+

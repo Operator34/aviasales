@@ -12,10 +12,8 @@ const initialState = {
     threeTransfer: true,
   },
   sorted: 'optimal',
-  searchId: '1',
   isLoading: true,
   tickets: [],
-  filterTickets: [],
 };
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(reducer, initialState, composeEnhancers(applyMiddleware(thunk)));
